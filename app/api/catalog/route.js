@@ -35,6 +35,12 @@ export async function GET() {
     return Response.json({ error: failed.error.message }, { status: 500, headers: CORS });
   }
 
+  /* Версия меняется только при реальной правке данных — по последнему updated_at. */
+  const stamps = [...(tools.data ?? []), ...(gens.data ?? [])]
+    .map(r => r.updated_at).filter(Boolean).sort();
+  const version = (stamps[stamps.length - 1] ?? '') + ':' +
+    (tools.data?.length ?? 0) + '-' + (cats.data?.length ?? 0) + '-' + (gens.data?.length ?? 0);
+
   const photo = p => (p ? base + p : '');
   const kw = n => {
     const v = Number(n);
@@ -42,7 +48,7 @@ export async function GET() {
   };
 
   return Response.json({
-    version: new Date().toISOString(),
+    version,
     families: (fams.data ?? []).map(f => ({ id: f.id, name: f.name, nameKz: f.name_kz || '' })),
     categories: (cats.data ?? []).map(c => ({
       id: c.id, name: c.name, short: c.short, family: c.family_id, icon: c.icon,
