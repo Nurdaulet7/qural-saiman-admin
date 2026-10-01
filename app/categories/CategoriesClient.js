@@ -77,7 +77,9 @@ function Inner({ shell, cats, fams, counts }) {
                       }}>
                       <span className="grab" draggable
                         onDragStart={e => e.dataTransfer.setData('text/plain', String(i))}>⠿</span>
-                      <span className="cic"><LucideIcon name={c.icon} /></span>
+                      <span className="cic">{c.icon_url
+                        ? <span className="cusicn" style={{ '--i': `url('${c.icon_url}')`, width: 20, height: 20 }} />
+                        : <LucideIcon name={c.icon} />}</span>
                       <span className="ctx">
                         <b>{c.name}</b>
                         <span>чип: {c.short} · id: {c.id}</span>

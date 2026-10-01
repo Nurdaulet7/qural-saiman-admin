@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Wrench, Layers, Zap, Percent, Image as ImageIcon, Settings, ExternalLink, LogOut } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { SITE_URL } from '@/lib/site';
 
 const NAV = [
   { href: '/tools', label: 'Инструменты', Icon: Wrench, count: 'tools' },
@@ -40,7 +41,7 @@ export default function Sidebar({ counts, email, onNavigate }) {
         <Link href="/settings" className={path === '/settings' ? 'on' : ''} onClick={onNavigate}>
           <Settings />Настройки
         </Link>
-        <a href="https://qural-saiman.kz" target="_blank" rel="noopener noreferrer">
+        <a href={SITE_URL} target="_blank" rel="noopener noreferrer">
           <ExternalLink />Открыть сайт
         </a>
       </nav>

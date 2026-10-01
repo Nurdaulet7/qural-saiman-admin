@@ -10,7 +10,8 @@ export default function CategoryForm({ cat, fams, onDone, onCancel }) {
     name: cat.name ?? '',
     name_kz: cat.name_kz ?? '',
     short: cat.short ?? '',
-    icon: cat.icon ?? 'box'
+    icon: cat.icon ?? 'box',
+    icon_url: cat.icon_url ?? null
   });
   const [err, setErr] = useState('');
   const [pending, start] = useTransition();
@@ -61,8 +62,9 @@ export default function CategoryForm({ cat, fams, onDone, onCancel }) {
         </div>
         <div className="fsec">
           <div className="lab">Иконка категории</div>
-          <IconPicker value={f.icon} onChange={v => set('icon', v)} />
-          <span className="hint">Набор lucide.dev — те же иконки, что на сайте</span>
+          <IconPicker catId={f.id} value={f.icon} iconUrl={f.icon_url}
+            onChange={v => set('icon', v)} onIconUrl={v => set('icon_url', v)} />
+          <span className="hint">Глиф из набора lucide.dev или свой SVG — своя иконка имеет приоритет</span>
         </div>
       </div>
       <div className="dfoot">

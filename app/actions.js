@@ -97,7 +97,8 @@ export async function saveCategory(id, form) {
     name: str(form.name),
     name_kz: str(form.name_kz),
     short: str(form.short) || str(form.name),
-    icon: str(form.icon) || 'box'
+    icon: str(form.icon) || 'box',
+    icon_url: str(form.icon_url) || null
   };
   if (!row.id || !row.name || !row.family_id) throw new Error('Заполните ID, название и семейство');
 

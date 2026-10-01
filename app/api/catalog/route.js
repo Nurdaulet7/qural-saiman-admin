@@ -52,6 +52,7 @@ export async function GET() {
     families: (fams.data ?? []).map(f => ({ id: f.id, name: f.name, nameKz: f.name_kz || '' })),
     categories: (cats.data ?? []).map(c => ({
       id: c.id, name: c.name, short: c.short, family: c.family_id, icon: c.icon,
+      iconUrl: c.icon_url || '',
       nameKz: c.name_kz || ''
     })),
     tools: (tools.data ?? []).map(t => ({
